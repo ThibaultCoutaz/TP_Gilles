@@ -62,8 +62,8 @@ void display(void)
 
    //***********CERCLE***************//
    //Centre : 0.5,0.5,0.0.
-   float rayon = 0.1;
-   float angle = 30;
+   float rayon = 0.4;
+   float angle = 1;
    float boucle = 360/angle; //pour savoir conbien de trés on trace pour faire le tour.
 
    
