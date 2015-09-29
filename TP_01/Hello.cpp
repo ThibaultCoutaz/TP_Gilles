@@ -63,15 +63,15 @@ void display(void)
    //***********CERCLE***************//
    //Centre : 0.5,0.5,0.0.
    float rayon = 0.1;
-   
-   //float boucle = 360/angle; //pour savoir conbien de trés on trace pour faire le tour.
+   float angle = 30;
+   float boucle = 360/angle; //pour savoir conbien de trés on trace pour faire le tour.
 
    
    
 	  glBegin(GL_LINE_LOOP);
 	  glColor3f (1.0, 1.0, 1.0);
-   for(float i=0;i<360;i++){
-      glVertex3f (0.5+rayon*cos(i), 0.5+rayon*sin(i), 0.0);
+   for(float i=0;i<boucle;i++){
+      glVertex3f (0.5+rayon*cos(i*angle), 0.5+rayon*sin(i*angle), 0.0);
    }
    glEnd();
 /* Swap the buffers to show the one
