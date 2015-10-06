@@ -42,41 +42,82 @@
 #include <math.h>
 #include <GL/glut.h>
 
+const float PI = 3.14159265359;
+
+//***********TRIANGLE**************//
+void drawTriangle(){
+	 
+   glBegin(GL_LINE_LOOP);
+   glColor3f (1.0, 1.0, 1.0);
+		  glVertex3f (0.05, 0.25, 0.0);
+		  glVertex3f (0.35, 0.25, 0.0);
+		  glVertex3f (0.05, 0.75, 0.0);	   
+   glEnd();
+
+   glBegin(GL_LINE_LOOP);
+   glColor3f (1.0, 0.0, 1.0);
+		  glVertex3f (0.40, 0.25, 0.0);
+		  glVertex3f (0.6, 0.25, 0.0);
+		  glVertex3f (0.40, 0.6, 0.0);	   
+   glEnd();
+
+   glBegin(GL_LINE_LOOP);
+   glColor3f (1.0, 1.0, 0.0);
+		  glVertex3f (0.65, 0.25, 0.0);
+		  glVertex3f (0.8, 0.25, 0.0);
+		  glVertex3f (0.65, 0.5, 0.0);	   
+   glEnd();
+}
+
+
+//***********CERCLE***************//
+void drawCercle(float rayon,float boucle){
+	
+	//Centre : 0.5,0.5,0.0.
+
+	float angle = 2*PI / boucle;
+	
+   
+	glBegin(GL_LINE_LOOP);
+	glColor3f (1.0, 1.0, 1.0);
+	for(float i=0;i<boucle;i++){
+		glVertex3f (0.5+rayon*cos(angle*i), 0.5+rayon*sin(angle*i), 0.0);
+	}
+	glEnd();
+
+}
+
+//***********CERCLE***************//
+void exo2(float rayon_inital,float boucle,int nb_cercle){
+	
+	//Centre : 0.5,0.5,0.0.
+
+	for(i:
+
+	float angle = 2*PI / boucle;
+	
+   
+	glBegin(GL_LINE_LOOP);
+	glColor3f (1.0, 1.0, 1.0);
+	for(float i=0;i<boucle;i++){
+		glVertex3f (0.5+rayon*cos(angle*i), 0.5+rayon*sin(angle*i), 0.0);
+	}
+	glEnd();
+
+}
+
 
 void display(void)
 {
-/* clear all pixels  */
    glClear (GL_COLOR_BUFFER_BIT);
 
-/* draw white polygon (rectangle) with corners at
- * (0.25, 0.25, 0.0) and (0.75, 0.75, 0.0) 
- */
+
   
-   //***********TRIANGLE**************//
-   /*glBegin(GL_LINE_LOOP);
-   glColor3f (1.0, 1.0, 1.0);
-      glVertex3f (0.05, 0.25, 0.0);
-      glVertex3f (0.35, 0.25, 0.0);
-      glVertex3f (0.05, 0.75, 0.0);
-   glEnd();*/
+   //drawTriangle();
+   drawCercle(0.4,100.);
+   exo2(0.4,100,5);
+ 
 
-   //***********CERCLE***************//
-   //Centre : 0.5,0.5,0.0.
-   float rayon = 0.4;
-   float angle = 1;
-   float boucle = 360/angle; //pour savoir conbien de trés on trace pour faire le tour.
-
-   
-   
-	  glBegin(GL_LINE_LOOP);
-	  glColor3f (1.0, 1.0, 1.0);
-   for(float i=0;i<boucle;i++){
-      glVertex3f (0.5+rayon*cos(i*angle), 0.5+rayon*sin(i*angle), 0.0);
-   }
-   glEnd();
-/* Swap the buffers to show the one
- * on which we writed
- */
    glutSwapBuffers();
 }
 
