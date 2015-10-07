@@ -130,7 +130,7 @@ void display(void)
 	//drawTriangle();
 	//drawCircle(0.4,100.);
    //drawexo2(0.1,100.,5.);
-   drawexo3(0.1,100,6.);
+   //drawexo3(0.1,100,6.);
 
 
    glutSwapBuffers();
