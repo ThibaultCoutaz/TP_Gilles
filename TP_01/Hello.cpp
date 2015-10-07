@@ -46,77 +46,92 @@ const float PI = 3.14159265359;
 
 //***********TRIANGLE**************//
 void drawTriangle(){
-	 
+
+	
    glBegin(GL_LINE_LOOP);
    glColor3f (1.0, 1.0, 1.0);
-		  glVertex3f (0.05, 0.25, 0.0);
-		  glVertex3f (0.35, 0.25, 0.0);
-		  glVertex3f (0.05, 0.75, 0.0);	   
+      glVertex3f (0.05, 0.25, 0.0);
+      glVertex3f (0.35, 0.25, 0.0);
+      glVertex3f (0.05, 0.75, 0.0);
    glEnd();
 
    glBegin(GL_LINE_LOOP);
    glColor3f (1.0, 0.0, 1.0);
-		  glVertex3f (0.40, 0.25, 0.0);
-		  glVertex3f (0.6, 0.25, 0.0);
-		  glVertex3f (0.40, 0.6, 0.0);	   
+      glVertex3f (0.40, 0.25, 0.0);
+      glVertex3f (0.60, 0.25, 0.0);
+      glVertex3f (0.40, 0.50, 0.0);
    glEnd();
 
    glBegin(GL_LINE_LOOP);
    glColor3f (1.0, 1.0, 0.0);
-		  glVertex3f (0.65, 0.25, 0.0);
-		  glVertex3f (0.8, 0.25, 0.0);
-		  glVertex3f (0.65, 0.5, 0.0);	   
+      glVertex3f (0.65, 0.25, 0.0);
+      glVertex3f (0.80, 0.25, 0.0);
+      glVertex3f (0.65, 0.40, 0.0);
    glEnd();
 }
 
 
 //***********CERCLE***************//
-void drawCercle(float rayon,float boucle){
-	
-	//Centre : 0.5,0.5,0.0.
+void drawCircle(float rayon, float nb_cotée){
 
-	float angle = 2*PI / boucle;
-	
-   
-	glBegin(GL_LINE_LOOP);
-	glColor3f (1.0, 1.0, 1.0);
-	for(float i=0;i<boucle;i++){
-		glVertex3f (0.5+rayon*cos(angle*i), 0.5+rayon*sin(angle*i), 0.0);
-	}
-	glEnd();
+   //Centre : 0.5,0.5,0.0.
+   float angle = 2*PI/nb_cotée;
+
+	  glBegin(GL_LINE_LOOP);
+	  glColor3f (1.0, 1.0, 1.0);
+   for(float i=0;i<nb_cotée;i++){
+      glVertex3f (0.5+rayon*cos(angle*i), 0.5+rayon*sin(angle*i), 0.0);
+   }
+   glEnd();
 
 }
 
-//***********CERCLE***************//
-void exo2(float rayon_inital,float boucle,int nb_cercle){
+void drawexo2(float rayon, float nb_cotée,float nb_cercle){
 	
-	//Centre : 0.5,0.5,0.0.
+	float angle = 2*PI/nb_cotée;
+	int j,i;
+	float centre=0.1;
 
-	for(i:
-
-	float angle = 2*PI / boucle;
-	
-   
-	glBegin(GL_LINE_LOOP);
-	glColor3f (1.0, 1.0, 1.0);
-	for(float i=0;i<boucle;i++){
-		glVertex3f (0.5+rayon*cos(angle*i), 0.5+rayon*sin(angle*i), 0.0);
+	for(j=0;j<nb_cercle;j++){
+		glBegin(GL_LINE_LOOP);	
+			glColor3f (1.0, 1.0, 1.0);
+			for(i=0;i<nb_cotée;i++){
+				glVertex3f (centre+rayon*cos(angle*i), 0.5+rayon*sin(angle*i), 0.0);
+			}
+			
+			centre+=rayon;
+			rayon=rayon*2;
+		glEnd();
 	}
-	glEnd();
-
 }
 
+void drawexo3(float rayon, float nb_cotée,float nb_cercle){
+	float angle = 2*PI/nb_cotée;
+	int j,i;
+	float centre=0.1;
 
+	for(j=0;j<nb_cercle;j++){
+		glBegin(GL_LINE_LOOP);	
+			glColor3f (1.0, 1.0, 1.0);
+			for(i=0;i<nb_cotée;i++){
+				glVertex3f (centre+rayon*cos(angle*i), 0.5+rayon*sin(angle*i), 0.0);
+			}
+			
+			centre+=rayon;
+			rayon=rayon/1.5;
+			centre+=rayon;
+		glEnd();
+	}
+}
 void display(void)
 {
    glClear (GL_COLOR_BUFFER_BIT);
 
+	//drawTriangle();
+	//drawCircle(0.4,100.);
+   //drawexo2(0.1,100.,5.);
+   drawexo3(0.1,100,6.);
 
-  
-   //drawTriangle();
-   drawCercle(0.4,100.);
-   exo2(0.4,100,5);
- 
 
    glutSwapBuffers();
 }
