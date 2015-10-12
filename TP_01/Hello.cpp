@@ -40,6 +40,7 @@
  * This is a simple, introductory OpenGL program.
  */
 #include <math.h>
+#include "struct.h"
 #include <GL/glut.h>
 
 const float PI = 3.14159265359;
@@ -123,6 +124,44 @@ void drawexo3(float rayon, float nb_cotée,float nb_cercle){
 		glEnd();
 	}
 }
+
+void flocon(point3 a,point3 b,int recurance){
+
+	
+   point3 c = point3(a.x+(b.x-a.x)/3,a.y+(b.y-a.y)/3,0.);
+   point3 d = point3(a.x+2*(b.x-a.x)/3,a.y+2*(b.y-a.y)/3,0.);
+   point3 e = point3((c.x+d.x)*cos(M_PI/3)-(d.y-c.y)*sin(M_PI/3), (c.y+d.y)*cos(M_PI/3)+(d.x-c.x)*sin(M_PI/3) , 0.);
+
+   recurance-=1;
+
+   if(recurance<=0){
+
+	glBegin(GL_LINE_STRIP);
+	glColor3f (1.0, 1.0, 0.0);
+
+		glVertex3f (a.x,a.y,a.z);
+		glVertex3f (c.x,c.y,c.z);
+		glVertex3f (e.x,e.y,e.z);
+		glVertex3f (d.x,d.y,d.z);
+		glVertex3f (b.x,b.y,b.z);
+	
+
+	glEnd();
+
+	
+
+   }else{
+		flocon(c,e,recurance);
+		flocon(e,d,recurance);
+		flocon(a,c,recurance);
+		flocon(d,b,recurance);
+	}
+
+  
+
+
+}
+
 void display(void)
 {
    glClear (GL_COLOR_BUFFER_BIT);
@@ -130,7 +169,16 @@ void display(void)
 	//drawTriangle();
 	//drawCircle(0.4,100.);
    //drawexo2(0.1,100.,5.);
-   drawexo3(0.1,100,6.);
+   //drawexo3(0.1,100,6.);
+
+   //*************Flocon de Von Koch***************//
+    point3 a = point3(0.2,0.25,0.);
+	point3 b = point3(0.8,0.25,0.);
+	point3 c = point3(0.5,0.6,0.);
+   
+	flocon(a,c,5);
+	flocon(b,a,2);
+	flocon(c,b,3);
 
 
    glutSwapBuffers();
